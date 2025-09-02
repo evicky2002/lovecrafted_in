@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 @layer base {
     html {
@@ -16,28 +16,65 @@
 
 @layer components {
     .btn-primary {
-        @apply bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl;
+        @apply bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-medium py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105;
     }
 
     .btn-secondary {
-        @apply bg-secondary-100 hover:bg-secondary-200 text-secondary-700 font-medium py-3 px-6 rounded-lg transition-colors duration-200;
+        @apply bg-gradient-to-r from-pink-100 to-pink-200 hover:from-pink-200 hover:to-pink-300 text-primary-700 font-medium py-3 px-6 rounded-full transition-all duration-300 border border-pink-200 hover:border-pink-300;
     }
 
     .card {
-        @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden;
+        @apply bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-pink-100 hover:border-pink-200;
     }
 
     .section-padding {
-        @apply py-16 px-4 sm:px-6 lg:px-8;
+        @apply py-20 px-4 sm:px-6 lg:px-8;
     }
 
     .container-max {
         @apply max-w-7xl mx-auto;
+    }
+
+    .image-gallery {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+    }
+
+    .hero-gradient {
+        @apply bg-gradient-to-br from-pink-50 via-white to-pink-100;
+    }
+
+    .pink-pattern-bg {
+        @apply bg-pink-pattern;
+    }
+
+    .floating-element {
+        @apply animate-float;
+    }
+
+    .bounce-gentle {
+        @apply animate-bounce-gentle;
     }
 }
 
 @layer utilities {
     .text-gradient {
         @apply bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent;
+    }
+
+    .text-gradient-pink {
+        @apply bg-gradient-to-r from-pink-400 to-pink-600 bg-clip-text text-transparent;
+    }
+
+    .shadow-pink {
+        box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.1), 0 10px 10px -5px rgba(236, 72, 153, 0.04);
+    }
+
+    .shadow-pink-lg {
+        box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.1), 0 10px 10px -5px rgba(236, 72, 153, 0.04);
+    }
+
+    .border-pink-glow {
+        border: 2px solid transparent;
+        background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #ec4899, #f472b6) border-box;
     }
 }

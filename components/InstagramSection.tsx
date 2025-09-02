@@ -1,6 +1,6 @@
 'use client'
 
-import { Instagram, Heart, MessageCircle } from 'lucide-react'
+import { Instagram, Heart, MessageCircle, Sparkles } from 'lucide-react'
 
 const instagramPosts = [
     {
@@ -95,81 +95,111 @@ const instagramPosts = [
 
 export default function InstagramSection() {
     return (
-        <section className="section-padding bg-white">
-            <div className="container-max">
+        <section className="section-padding bg-gradient-to-br from-pink-50 to-white relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute inset-0 pink-pattern-bg opacity-20"></div>
+            <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full opacity-20 blur-3xl floating-element"></div>
+            <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-br from-pink-100 to-pink-200 rounded-full opacity-20 blur-3xl floating-element" style={{ animationDelay: '1s' }}></div>
+
+            <div className="container-max relative z-10">
                 {/* Section Header */}
-                <div className="text-center mb-12">
-                    <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-                        <Instagram size={16} />
-                        <span>@lovecrafted</span>
+                <div className="text-center mb-16">
+                    <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 py-3 rounded-full text-sm font-medium mb-8 shadow-pink">
+                        <Instagram size={20} />
+                        <span className="font-cursive text-lg">@lovecrafted</span>
                     </div>
 
-                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-secondary-900 mb-4">
-                        Follow Our Crafting Journey
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-secondary-900 mb-6">
+                        Follow Our
+                        <span className="text-gradient-pink block font-cursive"> Crafting Journey</span>
                     </h2>
-                    <p className="text-lg text-secondary-600 max-w-2xl mx-auto mb-8">
-                        Get behind-the-scenes glimpses of our handcrafting process and see our latest creations
+                    <p className="text-xl text-secondary-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+                        Get behind-the-scenes glimpses of our handcrafting process and see our latest creations.
+                        Each piece tells a story of creativity, love, and attention to detail.
                     </p>
 
                     <a
-                        href="https://instagram.com/lovecrafted"
+                        href="https://www.instagram.com/__lovecrafted__/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn-primary inline-flex items-center justify-center"
+                        className="btn-primary inline-flex items-center justify-center text-lg"
                     >
                         Follow on Instagram
-                        <Instagram size={18} className="ml-2" />
+                        <Instagram size={20} className="ml-2" />
                     </a>
                 </div>
 
                 {/* Instagram Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-                    {instagramPosts.map((post) => (
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 mb-16">
+                    {instagramPosts.map((post, index) => (
                         <a
                             key={post.id}
                             href={post.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                            className="group relative aspect-square overflow-hidden rounded-2xl shadow-pink hover:shadow-pink-lg transition-all duration-500 transform hover:-translate-y-2 border border-pink-100 hover:border-pink-200"
+                            style={{ animationDelay: `${index * 0.1}s` }}
                         >
-                            {/* Actual Instagram Image */}
+                            {/* Instagram Image */}
                             <img
                                 src={post.image}
                                 alt={post.caption}
-                                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             />
 
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-4 text-white">
-                                    <div className="flex items-center space-x-1">
-                                        <Heart size={16} />
-                                        <span className="text-sm">{post.likes}</span>
-                                    </div>
-                                    <div className="flex items-center space-x-1">
-                                        <MessageCircle size={16} />
-                                        <span className="text-sm">{post.comments}</span>
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-pink-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+
+                            {/* Content Overlay */}
+                            <div className="absolute inset-0 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                                <div className="text-white text-center">
+                                    <p className="text-xs mb-3 line-clamp-2 font-medium leading-relaxed">
+                                        {post.caption}
+                                    </p>
+                                    <div className="flex items-center justify-center space-x-4 text-white/90">
+                                        <div className="flex items-center space-x-1">
+                                            <Heart size={14} className="fill-white" />
+                                            <span className="text-xs font-medium">{post.likes}</span>
+                                        </div>
+                                        <div className="flex items-center space-x-1">
+                                            <MessageCircle size={14} />
+                                            <span className="text-xs font-medium">{post.comments}</span>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            {/* Hover indicator */}
+                            <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-pink-600 text-xs px-2 py-1 rounded-full font-medium opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                View Post
                             </div>
                         </a>
                     ))}
                 </div>
 
-                {/* Stats */}
-                <div className="mt-12 text-center">
-                    <div className="inline-flex items-center space-x-8 bg-secondary-50 rounded-2xl px-8 py-6">
+                {/* Enhanced Stats */}
+                <div className="text-center">
+                    <div className="inline-flex items-center space-x-12 bg-white rounded-3xl px-12 py-8 shadow-pink-lg border border-pink-100">
                         <div className="text-center">
-                            <div className="text-2xl font-bold text-primary-600">2.5K+</div>
-                            <div className="text-sm text-secondary-600">Followers</div>
+                            <div className="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-pink">
+                                <Heart size={24} className="text-white" />
+                            </div>
+                            <div className="text-3xl font-bold text-pink-600">2.5K+</div>
+                            <div className="text-sm text-secondary-600 font-medium">Followers</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-2xl font-bold text-primary-600">500+</div>
-                            <div className="text-sm text-secondary-600">Posts</div>
+                            <div className="w-16 h-16 bg-gradient-to-br from-pink-300 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-3 shadow-pink">
+                                <Sparkles size={24} className="text-white" />
+                            </div>
+                            <div className="text-3xl font-bold text-pink-600">500+</div>
+                            <div className="text-sm text-secondary-600 font-medium">Posts</div>
                         </div>
                         <div className="text-center">
-                            <div className="text-2xl font-bold text-primary-600">98%</div>
-                            <div className="text-sm text-secondary-600">Satisfaction</div>
+                            <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-700 rounded-full flex items-center justify-center mx-auto mb-3 shadow-pink">
+                                <Instagram size={24} className="text-white" />
+                            </div>
+                            <div className="text-3xl font-bold text-pink-600">98%</div>
+                            <div className="text-sm text-secondary-600 font-medium">Satisfaction</div>
                         </div>
                     </div>
                 </div>
